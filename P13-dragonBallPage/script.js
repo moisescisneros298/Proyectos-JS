@@ -1,3 +1,8 @@
+setTimeout(function(){
+    document.getElementById("loading-page").classList.add("loaded") 
+    console.log("funciona")
+},6500);
+
 gsap.to("#bg",{
     scrollTrigger: {
         scrub:1
