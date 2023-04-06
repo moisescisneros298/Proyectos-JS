@@ -47,5 +47,33 @@ main {
             object-fit: cover;
             pointer-events: none;
         }
+        .personaje {
+            top: 43%;
+            object-fit: contain;
+        }
+        #text {
+            position: relative;
+            color: #fff;
+            font-size: 10vw;
+            
+        }
+    }
+    .sec {
+        position: relative;
+        min-height: 500px;
+        padding: 100px;
+        .content {
+            position: relative;
+            z-index: 2;
+            h2 {
+                font-size: 3.5em;
+                margin-bottom: 10px;
+                color: #20496a;
+            }
+            p {
+                font-size: 1.2em;
+                color: #f6f7f8;
+            }
+        }
     }
 }
