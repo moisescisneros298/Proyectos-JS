@@ -1,6 +1,8 @@
 setTimeout(function(){
     document.getElementById("loading-page").classList.add("loaded") 
     console.log("funciona")
+    document.getElementById("loader").className += "opzero";
+    document.getElementById("lastray").className +=  "finalray";
 },6500);
 
 gsap.to("#bg",{
