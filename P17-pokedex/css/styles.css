@@ -1,1 +1,24 @@
-/*# sourceMappingURL=styles.css.map */
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #1f2029;
+  min-height: 100%;
+  background-size: cover;
+}
+
+.title {
+  color: #f0db4f;
+  width: 100%;
+  text-align: center;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=styles.css.map */
