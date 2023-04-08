@@ -15,13 +15,27 @@ document.addEventListener("DOMContentLoaded",function() {
         }
         return data.pokemon_species;
     };
+
+    function orderNumber(str){
+        var mySubstring = str.substring(
+            str.lastIndexOf("s/")+2,str.lastIndexOf("/")
+        )
+        return mySubstring;
+    }
+
     async function getPokemons(numero) {
         let endpoint = `https://pokeapi.co/api/v2/generation/${numero}/`
         var container = document.getElementById('container')
         container.innerHTML="";
         let pokemons = []
         pokemons = await fetchPokemons(endpoint)
+        for(let j = 0;j<pokemons.length;j++){
+            pokemons[j].nr= orderNumber(pokemons[j].url);
+        }
+        pokemons.sort((a,b)=> a.nr-b.nr)
+        console.log(pokemons)
     }
+    getPokemons(1);
 
     var geners = [
         "generation-1",
