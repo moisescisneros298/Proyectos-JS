@@ -1,6 +1,6 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap";
 
-* {
+*, *::after, *::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,6 +10,9 @@ body {
     background-color: #1f2029;
     min-height: 100%;
     background-size: cover;
+}
+#btnicono {
+    margin: 10px;
 }
 .title {
     color: #f0db4f;
@@ -105,4 +108,44 @@ body {
 .radio-gens:checked + label::after,
 .radio-gens:not(:checked) + label::after{
     background-color: #e74c3c;
+}
+.container {
+    padding: 1em;
+    display: flex;
+    width: 100vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    li {
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        list-style: none;
+        width: 200px;
+        height: 200px;
+        color: #37393b;
+        &:hover {
+            border: 6px solid #f67c55;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #f67c55, #f67c55);
+            background: linear-gradient(45deg, #f23b00, #fcd3c6);
+            color: #fff;
+        }
+        .pokeimage {
+            width: 100px;
+            &:hover {
+                transform: scale(1.9);
+                transition: 0.5s;
+                margin: 10px;
+                background-color: white;
+                box-shadow: 20px 20px 40px #faf3c4;
+                background-color: white;
+                border-radius: 50%;
+                padding: 20px;
+            }
+        }
+    }
 }
