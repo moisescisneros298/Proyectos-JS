@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded",function() {
-
+    // #region CONSUMO DE API CON FETCH
     const fetchPokemons = async(endpoint) => {
         let data;
         try {
@@ -15,15 +15,19 @@ document.addEventListener("DOMContentLoaded",function() {
         }
         return data.pokemon_species;
     };
-
+    // #endregion
+    
+    //#region Ordenar numeros de pokemons
     function orderNumber(str){
         var mySubstring = str.substring(
             str.lastIndexOf("s/")+2,str.lastIndexOf("/")
         )
         return mySubstring;
     }
+    //#endregion Ordenar numeros de pokemons
 
-    async function getPokemons(numero) {
+    //#region Agregar pokemons al HTML
+    async function getPokemons(numero, toggle) {
         let endpoint = `https://pokeapi.co/api/v2/generation/${numero}/`
         var container = document.getElementById('container')
         container.innerHTML="";
@@ -33,9 +37,40 @@ document.addEventListener("DOMContentLoaded",function() {
             pokemons[j].nr= orderNumber(pokemons[j].url);
         }
         pokemons.sort((a,b)=> a.nr-b.nr)
-        console.log(pokemons)
+
+        pokemons.forEach((item)=> {
+            let numero3decimales = orderNumber(item.url)
+            if(numero3decimales < 10){
+                numero3decimales= "0" + numero3decimales;
+            }
+            if(numero3decimales < 100){
+                numero3decimales = "0" + numero3decimales
+            } 
+
+            let divitem = document.createElement("li")
+            divitem.classList.add("item");
+
+
+            var img = new Image();
+            const toggleurl = toggle?"https://assets.pokemon.com/assets/cms2/img/pokedex/full/": "https://www.serebii.net/pokemongo/pokemon/";
+            img.src="https://i.gifer.com/origin/28/2860d2d8c3a1e402e0fc8913cd92cd7a_w200.gif";
+            const urlImage = `${toggleurl}${numero3decimales}.png`
+            img.setAttribute("data-image", urlImage);
+            img.setAttribute("class","pokeimage");
+            img.setAttribute("alt", item.name);
+
+            divitem.innerHTML = `<div> ${orderNumber(item.url)}-${item.name}</div>`;
+            divitem.appendChild(img)
+            container.appendChild(divitem);
+        })
     }
+    //#endregion
+    
+    //#region Agregar generaciones
+    var numero = 1;
     getPokemons(1);
+    var toggle = false;
+    
 
     var geners = [
         "generation-1",
@@ -53,4 +88,6 @@ document.addEventListener("DOMContentLoaded",function() {
         <label for=${geners[i]} class="label-gens">${geners[i]}</label>`
     };
     filters.innerHTML=gen
+    //#endregion
+    
 });
