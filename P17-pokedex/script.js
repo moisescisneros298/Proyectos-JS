@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded",function() {
+    //#region observador de imagenes task 
+    const imgOptions = {}
+    const imgObserver = new IntersectionObserver((entries, imgObserver)=>{
+        entries.forEach((entry)=>{
+            if(!entry.isIntersecting) return;
+            const img = entry.target
+            var dataImage = img.getAttribute("data-image")
+            img.src=dataImage
+            imgObserver.unobserve(img)
+        })
+    },imgOptions)
+    //#endregion
+
     // #region CONSUMO DE API CON FETCH
     const fetchPokemons = async(endpoint) => {
         let data;
@@ -62,6 +75,7 @@ document.addEventListener("DOMContentLoaded",function() {
             divitem.innerHTML = `<div> ${orderNumber(item.url)}-${item.name}</div>`;
             divitem.appendChild(img)
             container.appendChild(divitem);
+            imgObserver.observe(img)
         })
     }
     //#endregion
@@ -70,7 +84,10 @@ document.addEventListener("DOMContentLoaded",function() {
     var numero = 1;
     getPokemons(1);
     var toggle = false;
-    
+    btnicono.addEventListener("click", function(){
+        toggle = !toggle
+        getPokemons(numero,toggle)
+    })
 
     var geners = [
         "generation-1",
@@ -88,6 +105,13 @@ document.addEventListener("DOMContentLoaded",function() {
         <label for=${geners[i]} class="label-gens">${geners[i]}</label>`
     };
     filters.innerHTML=gen
+    filters.addEventListener("click", function(e){
+        let targ = e.target.type
+        if(targ =="radio"){
+            getPokemons(e.target.value,toggle)
+            title.innerHTML = "pokemon" + e.target.id
+        }
+    })
     //#endregion
     
 });
