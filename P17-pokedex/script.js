@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded",function() {
+
+    const fetchPokemons = async(endpoint) => {
+        let data;
+        try {
+            const response = await fetch(endpoint,{
+                method:"GET",
+                headers:{
+                    "Content-Type": "application/json",
+                }
+            })
+            data=await response.json();
+        } catch(error){
+            console.log(error)
+        }
+        return data.pokemon_species;
+    };
+    async function getPokemons(numero) {
+        let endpoint = `https://pokeapi.co/api/v2/generation/${numero}/`
+        var container = document.getElementById('container')
+        container.innerHTML="";
+        let pokemons = []
+        pokemons = await fetchPokemons(endpoint)
+    }
+
     var geners = [
         "generation-1",
         "generation-2",
