@@ -13,7 +13,29 @@ if(navClose){
     })
 }
 
+const navLink = document.querySelectorAll(".nav__link")
+function linkAction() {
+    const navMenu = document.getElementById('nav-menu')
+    navMenu.classList.remove("show-menu")
+}
+navLink.forEach(item => item.addEventListener("click", linkAction))
 
+// Swiper
+let homeSwiper = new Swiper(".home-swiper",{
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickeable: true
+    }
+})
+
+let newSwiper = new Swiper(".new-swiper", {
+    centeredSlides: true,
+    slidesPerView:"auto",
+    loop: true,
+    spaceBetween: 16,
+})
 
 // Scroll reveal
 const sr = ScrollReveal({
