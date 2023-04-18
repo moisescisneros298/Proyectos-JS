@@ -51,20 +51,20 @@ img{
 }
 
 /*Header*/
-.header {
+.header{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background-color: var(--container-color);
-    box-shadow: 0 1px 0 rgba(27, 8, 43, .1);
+    box-shadow: 0 1px 0 rgba(22, 8, 43, .1);
     padding: 0 1rem;
     z-index: var(--z-fixed);
     &__container{
         display: flex;
         align-items: center;
-        justify-content: space-between;
         height: var(--header-height);
+        justify-content: space-between;
     }
     &__img{
         width: 35px;
@@ -72,10 +72,34 @@ img{
         border-radius: 50%;
         object-fit: cover;
     }
+    &__logo{
+        color: var(--title-color);
+        font-weight: var(--font-medium);
+        display: none;
+    }
     &__search{
         display: flex;
-        padding: 0.4rem .75rem;
-        background-color: var(--firs-color);
-        border-radius: .25rem;  
+        padding: .40rem .75rem;
+        background-color: var(--first-color-light);
+        border-radius: .25rem;
     }
+    &__input{
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: var(--first-color-light);
+        &::placeholder{
+            font-family: var(--body-font);
+            color: var(--text-color);
+        }
+    }
+    &__icon,
+    &__toggle{
+        font-size: 1.2rem;
+    }
+    &__toggle{
+        color: white;
+        cursor: pointer;
+    }
+
 }
