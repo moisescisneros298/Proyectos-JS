@@ -1,55 +1,52 @@
-@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 :root {
-    --header-height: 2.5rem;
+    --header-height: 3.5rem;
     --nav-width: 219px;
-    /* Colores*/
-    --firs-color: #6923d0;
-    --first-color: rgb(28, 203,107);
+    /*Colores*/
+    --first-color: #6923d0;
+    --first-color: rgb(28, 203, 107);
     --first-color-light: #1d1b1f;
     --title-color: #19181b;
     --text-color: #58555e;
     --text-color-light: #a5a1aa;
     --body-color: #181718;
     --container-color: #0b0b0b;
-    /*Fonts*/
-    --body-font: 'Poppins', sans-serif;
-    --normal-font-size: .938rem;
-    --small-font-size: .75rem;
-    --smiller-font-size: .75rem;    
+    /*fonts*/
+    --body-font: "Poppins", sans-serif;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.75rem;
+    --smaller-font-size: 0.75rem;
     @media screen and (min-width: 1024px) {
         --normal-font-size: 1rem;
-        --amall-font-size: 0.875rem;
-        --smiller-font-size: 0.813rem;
+        --small-font-size: 0.875rem;
+        --smaller-font-size: 0.813rem;
     }
     --font-medium: 500;
     --font-semi-bold: 600;
-    --z-fixed: 100;  
-} 
-//*Formateo de Pagima*//
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --z-fixed: 100;
 }
-body {
+/*Formateo de pagina*/
+*{
+    box-sizing: border-box; 
+}
+body{
     margin: var(--header-height) 0 0 0;
     padding: 1rem 1rem 0;
     font-family: var(--body-font);
+    font-size: var(--normal-font-size);
     background-color: var(--body-color);
     color: var(--text-color);
 }
-h3 {
-    margin: 0;
+h3{
+    margin: 0;  
 }
-a {
+a{
     text-decoration: none;
 }
 img{
     max-width: 100%;
     height: auto;
 }
-
 /*Header*/
 .header{
     position: fixed;
@@ -88,6 +85,7 @@ img{
         border: none;
         outline: none;
         background-color: var(--first-color-light);
+
         &::placeholder{
             font-family: var(--body-font);
             color: var(--text-color);
@@ -101,108 +99,122 @@ img{
         color: white;
         cursor: pointer;
     }
+
 }
 
-// nav
+/*Nav*/
 .nav{
     position: fixed;
     top: 0;
     left: -100%;
-    height: 100%;
+    height: 100vh;
     padding: 1rem 1rem 0;
     background-color: var(--container-color);
-    box-shadow: 1px 0 0 rgba(22,8,43,.1);
+    box-shadow: 1px 0 0 rgba(22, 8, 43, .1);
     z-index: var(--z-fixed);
-    transition: 0.4s;
-    &__container {
-        height: 1005px;
+    transition: .4s;
+    &__container{
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         padding-bottom: 3rem;
         overflow: auto;
         scrollbar-width: none;
-        &::-webkit-scrollbar{
+        &::-webkit-scrollbar {
             display: none;
         }
-
     }
     &__logo{
         font-weight: var(--font-semi-bold);
         margin-bottom: 2.5rem;
     }
-    &__list,
-    &__items {
+    &__list, 
+    &__items{
         display: grid;
     }
-    &__list {
+    &__list{
         row-gap: 2.5rem;
     }
-    &__items {
+    &__items{
         row-gap: 1.5rem;
     }
-    &__subtitle {
+
+    &__subtitle{
         font-size: var(--normal-font-size);
         text-transform: uppercase;
         letter-spacing: .1rem;
         color: var(--text-color-light);
     }
-    &__link {
+    &__link{
         display: flex;
         align-items: center;
         color: var(--text-color);
 
-        &:hover {
-            color: var(--firs-color);
+        &:hover{
+            color: var(--first-color);
         }
     }
-    &__icon {
+    &__icon{
         font-size: 1.2rem;
         margin-right: .5rem;
     }
-    &__name {
+    &__name{
         font-size: var(--small-font-size);
         font-weight: var(--font-medium);
         white-space: nowrap;
     }
-    &__logout {
-        margin-top: .5rem;
+    &__logout{
+        margin-top: 5rem;
     }
-    // Dropdown
+    /*Dropdown*/
     &__dropdown{
         overflow: hidden;
         max-height: 21px;
         transition: .4s ease-in-out;
-        &-collapse {
+        &-collapse{
             background-color: var(--first-color-light);
             border-radius: .25rem;
             margin-top: 1rem;
         }
-        &-content {
+        &-content{
             display: grid;
             row-gap: .5rem;
             padding: .75rem 2.5rem .75rem 1.8rem;
         }
-        &-item {
-            font-size: var(--smiller-font-size);
+        &-item{
+            font-size: var(--smaller-font-size);
             font-weight: var(--font-medium);
             color: var(--text-color);
-            &:hover {
-                color: var(--firs-color);
+            
+            &:hover{
+                color: var(--first-color);
             }
         }
-        &-icon {
+        &-icon{
             margin-left: auto;
             transition: .4s;
         }
-        &:hover {
+        &:hover{
             max-height: 100rem;
         }
-        &:hover &-icon {
+        &:hover  &-icon{
             transform: rotate(180deg);
         }
+
+
+
     }
+
 }
+/*clases agregadas con js*/
+.show-menu{
+    left: 0;
+}
+.active{
+    color: var(--first-color);
+}
+
 /*Media Queries*/
 @media screen and (max-width: 320px){
     .header{
@@ -211,40 +223,39 @@ img{
         }
     }
 }
-@media screen and (min-width: 768px){
-    body {
+@media screen and  (min-width:768px){
+    body{
         padding: 1rem 3rem 0 6rem;
     }
-    .header {
+    .header{
         padding: 0 3rem 0 6rem;
-        &__container {
+        &__container{
             height: calc(var(--header-height) + .5rem);
         }
-        &__search {
+        &__search{
             width: 300px;
             padding: .55rem .75rem;
         }
-        &__toggle {
+        &__toggle{
             display: none;
         }
-        &__logo {
-            display: none;
+        &__logo{
+            display: block;
         }
-        &__img {
+        &__img{
             width: 40px;
             height: 40px;
             order: 1;
         }
-
     }
     .nav{
         left: 0;
         padding: 1.2rem 1.5rem 0;
         width: 68px;
-        &__items {
+        &__items{
             row-gap: 1.7rem;
         }
-        &__icon {
+        &__icon{
             font-size: 1.3rem;
         }
         &__logo-name,
@@ -252,9 +263,9 @@ img{
         &__subtitle,
         &__dropdown-icon{
             opacity: 0;
-            transition: 0,3s;
+            transition: .3s;
         }
-        &:hover {
+        &:hover{
             width: var(--nav-width);
         }
         &:hover &__logo-name{
@@ -269,6 +280,5 @@ img{
         &:hover &__dropdown-icon{
             opacity: 1;
         }
-
     }
 }
