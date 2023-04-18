@@ -53,4 +53,35 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/*Header*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--container-color);
+  box-shadow: 0 1px 0 rgba(27, 8, 43, 0.1);
+  padding: 0 1rem;
+  z-index: var(--z-fixed);
+}
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+}
+.header__img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.header__search {
+  display: flex;
+  padding: 0.4rem 0.75rem;
+  background-color: var(--firs-color);
+  border-radius: 0.25rem;
 }/*# sourceMappingURL=styles.css.map */
