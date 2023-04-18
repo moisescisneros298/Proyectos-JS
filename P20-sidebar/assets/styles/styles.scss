@@ -26,7 +26,27 @@
     --font-semi-bold: 600;
     --z-fixed: 100;  
 } 
-
+//*Formateo de Pagima*//
 *{
-    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+body {
+    margin: var(--header-height) 0 0 0;
+    padding: 1rem 1rem 0;
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+h3 {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+
