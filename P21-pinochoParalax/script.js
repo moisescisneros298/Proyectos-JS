@@ -14,6 +14,12 @@ document.addEventListener("mousemove",({x,y})=>{
     timeout = window.requestAnimationFrame(()=>{
         const yValue = calcValue(y,window.innerHeight);
         const xValue = calcValue(x,window.innerWidth);
-        cards.style.transform=`rotateX(${yValue}deg) rotateY(${xValue}deg)`
-    })
-})
+        cards.style.transform=`rotateX(${yValue}deg) rotateY(${xValue}deg)`;
+        [].forEach.call(images, (item)=>{
+            item.style.transform=`translateX(${-xValue}px) translateY(${yValue}px)`;
+        });
+        [].forEach.call(backgrounds,(item)=>{
+            item.style.backgroundPosition = `${xValue*0.45}px ${-yValue*0.45}`
+        }) 
+    });
+},false);
