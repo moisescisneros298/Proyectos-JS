@@ -1,6 +1,6 @@
 // variables 
 const carrito = document.querySelector('#carrito');
-const contenedorCarrito = document.querySelector('#lista-carrito');
+const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 const listaCurso = document.querySelector('#lista-cursos');
 let articulosCarrito = []; 
@@ -25,8 +25,8 @@ function agregarCurso(e) {
     e.preventDefault();
 
     if( e.target.classList.contains('agregar-carrito') ) {
-        const cursoSeleccionado = e.target.parentElement.parentElement;
-        leerDatosCurso(cursoSeleccionado)
+        const curso = e.target.parentElement.parentElement;
+        leerDatosCurso(curso)
     }
 }
 
@@ -57,8 +57,8 @@ function leerDatosCurso(curso) {
     }
 
     // Revisa si el elemento ya existe en el carrito 
-    const existe = articulosCarrito.some( curso => curso.id === infoCurso.id );
-    if(existe){
+    
+    if(articulosCarrito.some( curso => curso.id === infoCurso.id )){
         // Actualizmos la cantidad 
         const cursos = articulosCarrito.map( curso => {
             if(curso.id === infoCurso.id){
