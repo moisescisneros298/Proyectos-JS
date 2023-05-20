@@ -24,7 +24,7 @@ function agregarCurso(e) {
 // Leer el contenido del HTML al que le dimos click y extrae la informacion del curso
 
 function leerDatosCurso(curso) {
-    console.log(curso);
+    // console.log(curso);
 
     // Crear un objeto con el contenido del curso actual
     const infoCurso = {
@@ -35,5 +35,42 @@ function leerDatosCurso(curso) {
         cantidad: 1
     }
 
-    console.log(infoCurso)
+    // Agregar elementos al arreglo de carrito 
+    articulosCarrito = [...articulosCarrito, infoCurso];
+
+    console.log(articulosCarrito);
+
+    carritoHTML()
+}
+
+// Muestra el carrito de compras en el html
+function carritoHTML(){
+
+    // Limpiar el HTML
+    limpiarHTML()
+
+    // Recorre el carrito y genera HTML
+    articulosCarrito.forEach( curso => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <img src="${curso.imagen}">
+            </td>
+            <td>
+                ${curso.titulo}
+            </td>
+        `
+        // Agrega el HTML del carrito al tbody
+        contenedorCarrito.appendChild(row);
+    })
+}
+
+// Elimina los cursos del tablebody
+function limpiarHTML(){
+    // Forma lenta
+    // contenedorCarrito.innerHTML = '';
+
+    while(contenedorCarrito.firstChild){
+        contenedorCarrito.removeChild(contenedorCarrito.firstChild)
+    }
 }
