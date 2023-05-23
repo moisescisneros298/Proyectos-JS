@@ -14,10 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
     const btnReset = document.querySelector('#formulario button[type="reset"]');
     const spinner = document.querySelector('#spinner')
+    const cc = document.querySelector('#cc');
 
 
     // Asignar eventos
     inputEmail.addEventListener('input', validar );
+    cc.addEventListener('input', validar2 );
     inputAsunto.addEventListener('input', validar);
     inputMensaje.addEventListener('input', validar);
 
@@ -77,6 +79,30 @@ document.addEventListener('DOMContentLoaded', function() {
         //  Comprobar el objeto de email
         comprobarEmail();
     }
+
+    function validar2(e){
+        if(e.target.value.trim() === ''){
+            limpiarAlerta(e.target.parentElement);
+            btnSubmit.classList.remove('opacity-50' );
+            btnSubmit.disabled = false;
+            return;
+        }
+
+        if(e.target.id === 'cc' && !validarEmail(e.target.value)){
+            mostrarAlerta('El email no es valido', e.target.parentElement)
+            email[e.target.name] = '';
+            comprobarEmail();
+            return;
+        }
+        limpiarAlerta(e.target.parentElement);
+
+        // Asignar los valores
+        email[e.target.name] = e.target.value.trim().toLowerCase();
+
+        //  Comprobar el objeto de email
+        comprobarEmail();
+    }
+
     function mostrarAlerta(mensaje, referencia){
         limpiarAlerta(referencia)
 
