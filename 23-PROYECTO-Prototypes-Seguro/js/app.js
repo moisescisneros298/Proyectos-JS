@@ -87,6 +87,48 @@ UI.prototype.mostrarMensaje = (mensaje, tipo ) => {
     }, 3000)
 }
 
+UI.prototype.mostrarResultado = (total, seguro) => {
+
+    const {marca, year, tipo} = seguro;
+    let textoMarca;
+
+    switch(marca) {
+        case '1':
+            textoMarca = 'Americano';
+        case '2':
+            textoMarca = 'Asiatico';
+        case '3':
+            textoMarca = 'Europeo';
+    
+
+        default:
+            break;
+    }
+
+    //crear resultado
+    const div = document.createElement('div');
+    div.classList.add('mt-10');
+
+    div.innerHTML = `
+        <p class="header"> Tu resumen </p>
+        <p class="font-bold">Marca: <spam class="font-normal">  ${textoMarca} </span></p>
+        <p class="font-bold">Year: <spam class="font-normal">  ${year} </span></p>
+        <p class="font-bold">Tipo: <spam class="font-normal capitalize">  ${tipo} </span></p>
+        <p class="font-bold">Total: <spam class="font-normal"> $ ${total} </span></p>
+    `;
+
+    const resultadoDiv = document.querySelector('#resultado');
+
+    //Mostrar spinner
+    const spinner = document.querySelector('#cargando');
+    spinner.style.display = 'block';
+
+    setTimeout(() => {
+        spinner.style.display = 'none'; //Se borra el spinner y se muestra el resultado
+        resultadoDiv.appendChild(div);
+    }, 3000);
+}
+
 //Instanciar UI
 const ui = new UI();
 console.log(ui);
@@ -121,10 +163,17 @@ function cotizarSeguro(e) {
 
     ui.mostrarMensaje('Cotizando...', 'exito');
 
+    //Ocultar las cotozacione previas
+    const resultados = document.querySelector('#resultado div');
+    if(resultados != null) {
+        resultados.remove();
+    }
+
     //Instanciar el seguro
     const seguro = new Seguro(marca,year, tipo);
-    seguro.cotizarSeguro();
+    const total = seguro.cotizarSeguro();
 
 
     // Utilizar el prototype ue va a cotizar
+    ui.mostrarResultado(total, seguro);
 }
