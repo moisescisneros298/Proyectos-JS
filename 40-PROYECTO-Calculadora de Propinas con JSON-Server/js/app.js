@@ -41,5 +41,25 @@ function guardarCliente(){
     const modalBootstrap = bootstrap.Modal.getInstance(modalFormulario);
     modalBootstrap.hide();
 
+    // Mostrar las secciones
+    mostrarSecciones();
 
+    // Obtener Platillos de la API de json server
+    obtenerPlatillos();
+
+}
+
+function mostrarSecciones(){
+    const seccionesOcultas = document.querySelectorAll('.d-none');
+    seccionesOcultas.forEach(seccion => seccion.classList.remove('d-none'))
+
+}
+
+function obtenerPlatillos(){
+    const url = 'http://localhost:4000/platillos';
+
+    fetch(url)
+        .then( respuesta => respuesta.json() )
+        .then( resultado => console.log(resultado) )
+        .catch( error => console.log(error));
 }
