@@ -137,7 +137,111 @@ function agregarPlatillo(producto) {
         }
 
     } else {
-        console.log('No es mayor a 0')
+        // Elimiar elementos cuando la cantidad sea 0
+        const resultado = pedido.filter( articulo => articulo.id !== producto.id );
+        cliente.pedido = [...resultado]
     }
-    console.log(cliente.pedido)
+
+    // Limpiar el codigo HTML previo
+    limpiarHTML();
+    // Mostrar el resumen
+    actualzarResumen();
+}
+
+function actualzarResumen(){
+    const contenido = document.querySelector('#resumen .contenido');
+
+    const resumen = document.createElement('DIV')
+    resumen.classList.add('col-md-6', 'card', 'py-5', 'px-3', 'shadow');
+
+    // Informacion de la mesa
+    const mesa = document.createElement('P');
+    mesa.textContent = 'mesa: ';
+    mesa.classList.add('fw-bold');
+
+    const mesaSpan = document.createElement('SPAN');
+    mesaSpan.textContent = cliente.mesa;
+    mesaSpan.classList.add('fw-normal');
+
+    // Informacion de la hora
+    const hora = document.createElement('P');
+    hora.textContent = 'hora: ';
+    hora.classList.add('fw-bold');
+
+    const horaSpam = document.createElement('SPAN');
+    horaSpam.textContent = cliente.hora;
+    horaSpam.classList.add('fw-normal');
+
+    // Agregar a los elementos padre
+    mesa.appendChild(mesaSpan);
+    hora.appendChild(horaSpam);
+
+    // Titulo de la seccion
+    const heading = document.createElement('H3');
+    heading.textContent = 'Platillos Consumidos';
+    heading.classList.add('my-4', 'text-center');
+
+    // Iterar sobre el array de pedidos
+    const grupo = document.createElement('UL');
+    grupo.classList.add('list-group');
+    const { pedido } = cliente;
+    pedido.forEach( articulo => {
+        const { nombre, cantidad, precio, id } = articulo;
+
+        const lista = document.createElement('LI');
+        lista.classList.add('list-group-item');
+
+        const nombreEL = document.createElement('H4');
+        nombreEL.classList.add('my-4');
+        nombreEL.textContent = nombre;
+
+        // Cantidad del articulo
+        const cantidadEl = document.createElement('P');
+        cantidadEl.classList.add('fw-bold');
+        cantidadEl.textContent = 'Cantidad: ';
+
+        const cantidadValor = document.createElement('SPAN');
+        cantidadValor.classList.add('fw-normal');
+        cantidadValor.textContent = cantidad;
+
+        // Precio del articulo
+        const precioEl = document.createElement('P');
+        precioEl.classList.add('fw-bold');
+        precioEl.textContent = 'Precio: ';
+
+        const precioValor = document.createElement('SPAN');
+        precioValor.classList.add('fw-normal');
+        precioValor.textContent = `$${precio}`;
+
+
+        // Agregar valores a sus contenedores
+        cantidadEl.appendChild(cantidadValor);
+        precioEl.appendChild(precioValor);
+        
+        // Agregar elementos al LI
+        lista.appendChild(nombreEL);
+        lista.appendChild(cantidadEl);
+        lista.appendChild(precioEl);
+
+        
+        // Agregar lista al elemento principal
+        grupo.appendChild(lista);
+    } )
+
+    // Agregar al contenido
+    resumen.appendChild(mesa);
+    resumen.appendChild(hora);
+    resumen.appendChild(heading);
+    resumen.appendChild(grupo);
+
+    contenido.appendChild(resumen);
+
+}
+
+function limpiarHTML() {
+    const contenido = document.querySelector('#resumen .contenido');
+
+    while( contenido.firstChild ){
+        contenido.removeChild(contenido.firstChild);
+    }
 }
