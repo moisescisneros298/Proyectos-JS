@@ -62,7 +62,7 @@ function mostrarSecciones(){
 }
 
 function obtenerPlatillos(){
-    const url = 'http://localhost:4000/platillos';
+    const url = 'http://localhost:4000/platillos'; // cambuiar url cada inicio
 
     fetch(url)
         .then( respuesta => respuesta.json() )
@@ -115,5 +115,29 @@ function mostrarPlatillos(platillos){
 }
 
 function agregarPlatillo(producto) {
-    console.log(producto);
+    // Extraer el pedido actual
+    let { pedido } = cliente;
+    // Revisar que la cantidad sea mayor a 0 
+    if(producto.cantidad > 0 ){
+
+        // Comprueba si el elemento ya existe en array
+        if(pedido.some( articulo => articulo.id === producto.id)){
+            // El articulo ya existe
+            const pedidoActualizado = pedido.map( articulo => {
+                if( articulo.id === producto.id ){
+                    articulo.cantidad = producto.cantidad;
+                }
+                return articulo;
+            } );
+            // Se asigna el nuevo array a cliente.pedido
+            cliente.pedido = [...pedidoActualizado];
+        } else {
+            // El articulo no existe, lo agregamos al array de precio
+            cliente.pedido = [...pedido, producto];
+        }
+
+    } else {
+        console.log('No es mayor a 0')
+    }
+    console.log(cliente.pedido)
 }
